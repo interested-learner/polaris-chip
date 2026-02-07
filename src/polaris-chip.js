@@ -17,6 +17,7 @@ import { LitElement, html, css } from 'lit';
 // but compatibility across sites / libraries is unique to web components
 // and not a thing in React, Vue, Angular, etc
 export class PolarisChip extends LitElement {
+
   // this is not a requirement, but it's a convention I personally enjoy
   // because it helps when looking at multiple elements. I open this file
   // I glance and go "oh the HTML tag for this code is called polaris-chip"
@@ -29,6 +30,7 @@ export class PolarisChip extends LitElement {
     super();
     // a variable on this object called title
     this.title = 'Chip Default';
+    this.link = 'https://example.com';
   }
 
   // CSS styles are scoped JUST to this element. This uses a technology called
@@ -49,15 +51,15 @@ export class PolarisChip extends LitElement {
         display: inline-flex;
       }
 
-      span {
-        background-color: orange;
+      a {
+        background-color: yellow;
         color: black;
         font-size: 24px;
         padding: 16px;
         margin: 8px;
       }
-
-      span:hover {
+      a:focus-within,
+      a:hover {
         background-color: grey;
         border: 1px solid black;
       }
@@ -83,7 +85,12 @@ export class PolarisChip extends LitElement {
     // it is going to print the title of the element. The magic of Lit is that
     // when title is changed (even by inspecting the document and hacking the value)
     // it will automatically update what is displayed and do so incredibly quickly
-    return html`<span>${this.title}</span>`;
+    return html`
+    <span>
+      <a href="${this.link}">
+      ${this.title}</span>
+      </a>
+    </span>`;
   }
 
   // LitElement uses the properties call to do the following:
@@ -95,6 +102,7 @@ export class PolarisChip extends LitElement {
     return {
       // this is a String. Array, Object, Number, Boolean are other valid values here
       title: { type: String },
+      link: { type: String },
     };
   }
 }
