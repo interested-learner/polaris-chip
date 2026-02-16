@@ -1,4 +1,5 @@
 import { LitElement, html, css } from 'lit';
+import "@haxtheweb/meme-maker/meme-maker.js";
 
 /**
  * Now it's your turn. Here's what we need to try and do:
@@ -38,8 +39,12 @@ openChanged(e) {
   render() {
     return html`
       <div class="card">
-        <div class="image">
-          <img src="${this.image}" alt="${this.alt}">
+        <div class="image" style="max-height: 200px; overflow: scroll;">
+          <meme-maker
+          alt="${this.alt}"
+          image-url="${this.image}"
+          bottom-text="${this.title}"
+          top-text="${this.title}"></meme-maker>
         </div>
 
         <h3 class="heading">
@@ -89,7 +94,7 @@ openChanged(e) {
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
       margin: 25px;
       display: inline-block;
-      height: 320px;
+      height: 370px;
       overflow-y: scroll;
       }
 
